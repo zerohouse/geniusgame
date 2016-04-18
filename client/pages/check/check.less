@@ -1,0 +1,83 @@
+.wrap {
+  background-color: #540000;
+}
+
+.wrap > div {
+  width: 27%;
+  float: left;
+  text-align: center;
+  height: 130px;
+  margin: 3%;
+  line-height: 130px;
+  font-size: 400%;
+  position: relative;
+  outline: 1px solid rgb(255, 255, 255);
+  box-shadow: 1px 1px 1px silver;
+
+  .selected {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .number {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 23px;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
+}
+
+.lg-group {
+  text-align: center;
+  .btn {
+    min-width: 43%;
+  }
+}
+
+.selected {
+  opacity: 0.7;
+  outline: 5px solid red !important;
+}
+
+.opacity {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-check-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    border-radius: 0 !important;
+    z-index: 9999;
+  }
+
+  .btn-check-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    border-radius: 0 !important;
+    z-index: 9999;
+  }
+
+  .wrap > div {
+    line-height: 100px;
+    height: 100px;
+    font-size: 300%;
+  }
+}
+
+.chat-window {
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+}

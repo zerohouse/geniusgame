@@ -1,0 +1,109 @@
+<div class="container">
+    <span class="label label-warning" popup="rooms,seven">방목록</span>
+    <span class="label label-info" ng-click="prompt(roomId)">http://picks.be/seven/{{roomId}}</span>
+    <h3>7 게임
+        <small ng-show="game.playing">게임중 : {{game.turn}}번째 순서</small>
+        <small ng-show="!game.playing">대기중 : 3명이상이 참여하면 시작합니다.</small>
+        <div style="margin:5px; display:inline-block">
+            <div class="btn btn-sm btn-success" ng-show="!player.in" ng-click="player.in = true">게임참여</div>
+            <div class="btn btn-sm btn-danger" ng-show="player.in" ng-click="player.in = false">관전</div>
+        </div>
+    </h3>
+
+    <div class="row">
+        <div class="game col-md-8" ng-show="game.playing">
+            <div class="players">
+                <div class="player" ng-click="setTo(p)"
+                     ng-repeat="p in inPlayers" id="{{p.sid}}">
+                    <div><i class="fa fa-user fa-5x"></i></div>
+                    {{p.name||"참여자"}} <span class="badge">{{p.score||0}}</span>
+
+                    <div class="label label-danger disconnect" ng-show="p.disconnect">연결끊김</div>
+
+                    <div class="card-empty">
+                        <span class="word">CARD</span>
+
+                        <div ng-show="p.submitted !== undefined">
+                            <card ng-click="open(p)" ng-class="{flipped:p.submitted===true || !p.open}"
+                                  front="p.submitted"></card>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="chips wrap-block"
+                 ng-class="{'animate-move-down-hide':win, 'animate-move-up-hide':!win}">
+                <div class="counter">현재 승점 : {{game.point}}</div>
+
+                <div class="blue chip"
+                     ng-class="{'animate-move-from-down':bluechips.indexOf(chip)%(inPlayers.length+1)==0,
+                  'animate-move-from-up':bluechips.indexOf(chip)%(inPlayers.length+1)!=0}"
+                     ng-repeat="chip in bluechips"></div>
+                <div class="black chip fade-in-out" ng-repeat="chip in blackchips"></div>
+            </div>
+
+            <div class="mycard">
+                <div class="card-empty">
+                    <span class="word">CARD</span>
+                    <card ng-show="game.submitted!==undefined" front="game.submitted"></card>
+                </div>
+            </div>
+
+
+            <div class="card-dek wrap-block" id="{{player.sid}}">
+                <card class="card-hover" ng-style="cardStyle(player.cards.indexOf(card))" front="card"
+                      ng-repeat="card in player.cards" ng-click="submit(player.cards.indexOf(card))"></card>
+                <div class="myscore">{{player.name}} <span class="badge">{{player.score}}</span></div>
+            </div>
+        </div>
+
+        <div ng-class="{'col-md-4':game.playing, 'col-md-12':!game.playing}">
+            <h4 ng-show="time!=0">
+                <i class="fa fa-clock-o"></i> 남은시간 : {{time}}
+            </h4>
+
+            <div class="panel panel-primary" ng-show="players.length!=0">
+                <div class="panel-heading">관전자</div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-click="setTo(p)"
+                        ng-class="{'list-group-item-success':player == p}"
+                        ng-repeat="p in orderedPlayers = (players | orderBy: 'score':true)">
+                        {{p.name||"참여자"}} <span class="label"
+                                                ng-class="{'label-success':p!=player&&p.in,'label-danger':!p.in,'label-primary':p.in&&p==player}">
+                <span ng-show="p.in">참가예정</span>
+                <span ng-show="!p.in">관전</span></span>
+                        <span class="badge">{{p.score||0}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <chat player="player" setTo="setTo"></chat>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading" ng-click="show.record=!show.record">게임 기록</div>
+                <ul class="list-group chat-window" ng-show="show.record">
+                    <li class="list-group-item" ng-repeat="log in logs">{{log.message}}</li>
+                </ul>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading" ng-click="show.rule=!show.rule">규칙 : 7 게임 ( 3~8인 )</div>
+                <ul class="list-group" ng-show="show.rule">
+                    <li class="list-group-item">게임 시작시 모든 참여자는 카드 10장을 받습니다. [0,1,2,3,4,5,6,7,눈,X]</li>
+                    <li class="list-group-item">게임은 9 라운드로 진행되며 각 라운드에 모든 참여자는 1점씩 배팅합니다.</li>
+                    <li class="list-group-item">각 라운드에 카드를 한장씩 선택하여 냅니다.</li>
+                    <li class="list-group-item">가장 높은 숫자를 낸 사람이 이깁니다.</li>
+                    <li class="list-group-item">가장 높은 숫자를 낸 사람이 두명이상이면 아무도 이기지 못합니다.</li>
+                    <li class="list-group-item">X카드를 내면 해당 라운드에 아무도 승리하지 못합니다.</li>
+                    <li class="list-group-item">눈카드를 내면 다른 사람들의 카드를 확인한 뒤 자신의 카드를 선택합니다.</li>
+                    <li class="list-group-item">가장 높은 카드를 낸 사람이 여러명이면, 0카드를 낸 사람이 승자가 됩니다.</li>
+                    <li class="list-group-item">0카드는 여러명이어도 승리합니다. 0카드 승자들은 승점을 나누어 가지고 나머지만 다음 라운드로 넘깁니다.</li>
+                    <li class="list-group-item">1,2,3카드로 승리했을경우 다른 참여자들에게 다른 참여자에게 1점을 추가로 받습니다.</li>
+                    <li class="list-group-item">9라운드가 지나 카드를 모두 내면 게임이 종료됩니다.</li>
+                    <li class="list-group-item">9라운드에 승자가 없으면 승점은 다음 게임으로 넘어갑니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

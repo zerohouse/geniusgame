@@ -1,0 +1,94 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.alert-window {
+  .message {
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 50%;
+    z-index: 9999;
+  }
+}
+
+.fb-login-button {
+  line-height: 38px;
+}
+
+@keyframes ex4 {
+  /* CSS3 */
+  0% {
+    background-color: #330033;
+  }
+  50% {
+    background-color: #161f29;
+  }
+  100% {
+    background-color: #330033;
+  }
+}
+
+@-moz-keyframes ex4 {
+  /* Firefox */
+  0% {
+    background-color: #330033;
+  }
+  50% {
+    background-color: #161f29;
+  }
+  100% {
+    background-color: #330033;
+  }
+}
+
+@-webkit-keyframes ex4 {
+  /* Webkit */
+  0% {
+    background-color: #330033;
+  }
+  50% {
+    background-color: #161f29;
+  }
+  100% {
+    background-color: #330033;
+  }
+}
+
+.steam {
+  animation: ex4 2s infinite; /* CSS3 */
+  -moz-animation: ex4 2s infinite; /* Firefox */
+  -webkit-animation: ex4 2s infinite; /* Webkit */
+}
+
+[ng-click], [ui-sref] {
+  cursor: pointer;
+}
+
+.message {
+  .success, .danger {
+    font-size: 18px;
+    padding: 20px;
+    box-shadow: 2px 2px 2px silver;
+    border-radius: 20px;
+  }
+
+  .success {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .danger {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  text-align: center;
+}
