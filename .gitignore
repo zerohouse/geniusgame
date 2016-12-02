@@ -1,7 +1,4 @@
 bower_components
-dist/**/*.*
-!dist/lib/**/*.*
-!dist/favicon.ico
 
 # Created by https://www.gitignore.io/api/webstorm,node
 

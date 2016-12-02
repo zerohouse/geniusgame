@@ -1,0 +1,8 @@
+<div class="panel panel-primary" ng-controller="login">
+    <div class="panel-heading">로그인</div>
+    <div class="panel-body">
+        <input class="form-control" placeholder="email" ng-model="user.email" ng-regex="mailRegex" message="메일형식이 잘못되었습니다.">
+        <input class="form-control" type="password" placeholder="password" ng-model="user.password" ng-enter="login()">
+    </div>
+    <div class="panel-footer" ng-click="login()">로그인</div>
+</div>

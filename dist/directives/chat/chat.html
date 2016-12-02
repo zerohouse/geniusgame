@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" ng-click="show.chat=!show.chat" ng-init="show.chat = true">말하기</div>
+    <ul class="list-group chat-window chat" ng-show="show.chat">
+        <li class="list-group-item" ng-repeat="message in messages"
+            ng-class="{'list-group-item-danger':message.to}">
+            <div ng-show="message.to.sid != player.sid" class="btn btn-sm btn-primary"
+                 ng-click="setTo(message.from)">
+                {{message.from.name}}<span ng-show="message.fromme"></span></div>
+            <div class="btn btn-sm btn-primary" ng-click="setTo(message.from)"
+                 ng-show="message.to.sid == player.sid">
+                {{message.from.name}}의 귓속말</span></div>
+            {{message.message}}
+            <small ng-show="!game.playing">{{message.date.toDateString()}}</small>
+        </li>
+    </ul>
+    <div class="panel-footer" ng-show="show.chat">
+        <div class="input-group" ng-class="{whisper:message.to}">
+            <div class="input-group-addon" ng-show="message.to">{{message.to.name}}님에게 <i
+                    class="fa fa-times"
+                    ng-click="message.to=undefined"></i>
+            </div>
+            <input class="form-control" ng-enter="send(message);" ng-model="message.message">
+
+            <div class="input-group-addon" ng-click="send(message);">말하기</div>
+        </div>
+    </div>
+</div>

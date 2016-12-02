@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="label label-warning" popup="rooms,check">방목록</span>
+            <span class="label label-info" ng-click="prompt(roomId)">http://picks.be/check/{{roomId}}</span>
+            <!--<span ng-show="players[0].id==player.id">비공개 <input type="checkbox" ng-model="hide"></span>-->
+
+            <h1>결합!<a target="_blank" href="https://www.youtube.com/watch?v=0gCfLVFs79w"><i
+                    class="fa fa-question-circle"></i></a>
+                <small ng-show="orderedPlayers[0].name"> 방 1위 : {{orderedPlayers[0].name}} ({{orderedPlayers[0].score}})
+                </small>
+                <span ng-show="player.booster">{{time}}</span>
+            </h1>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">결합 <span class="badge pull-right" ng-click="resetShapes()"><i
+                        class="fa fa-refresh"></i></span></div>
+                <div class="panel-body" ng-show="!user.logged">로그인해야 점수가 저장됩니다. 아무정보도 필요없고, 저장용도외에 사용하지 않습니다.</div>
+                <div class="panel-body wrap">
+                    <div ng-repeat="block in blocks" ng-style="style(block)" ng-class="{selected:block.select}"
+                         ng-click="selectBlock(block)">
+                        <i class="fa" ng-class="shapes[block.shape]"></i>
+                        <span class="number">{{blocks.indexOf(block)+1}}</span>
+                    </div>
+                </div>
+                <div class="panel-body" ng-show="discovered.length>0">
+                    <div>이미 찾은 합</div>
+                    <span ng-repeat="each in discovered" style="margin-right:5px; margin-bottom:5px;"
+                          class="btn btn-success"
+                          ng-class="{'btn-danger':discovered.indexOf(each) === already}">{{format.discovered(each)}}</span>
+                </div>
+                <div class="panel-footer">
+                    <div class="btn-group-lg lg-group">
+                        <div class="btn btn-primary btn-check-left" ng-click="check()"
+                             ng-disabled="selects.length!=3 || already!==false">
+                            {{format.selects(selects)}} 합
+                        </div>
+                        <div class="btn btn-success btn-check-right" ng-click="done()">결</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">부스터</div>
+                <ul class="list-group">
+                    <li ng-class="{opacity:player.score<15 ||player.booster}" class="list-group-item"
+                        ng-click="steampack(0)">
+                        <div>헉헉(15Point)</div>
+                        <div class="label label-info"> 30초간 증가/감소하는 점수가 2배가 됩니다.</div>
+                    </li>
+                    <li class="list-group-item" ng-click="steampack(1)"
+                        ng-class="{opacity:player.score<30||player.booster}">
+                        <div>하악하악(30Point)</div>
+                        <div class="label label-success"> 30초간 증가/감소하는 점수가 4배가 됩니다.</div>
+                    </li>
+                    <li class="list-group-item" ng-click="steampack(2)"
+                        ng-class="{opacity:player.score<150||player.booster}">
+                        <div>부와아악(150Point)</div>
+                        <div class="label label-danger"> 60초간 증가/감소하는 점수가 10배가 됩니다.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">플레이어</div>
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-class="{'list-group-item-success':player == p,'list-group-item-danger':p.booster}"
+                        ng-repeat="p in orderedPlayers = (players | orderBy: 'score':true)">
+                        {{p.name||"플레이어"}}<span class="label label-primary" ng-show="p.booster">부스터 사용중</span>
+                        <span class="badge">{{p.score||0}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <chat player="player" setTo="setTo"></chat>
+
+        </div>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item"
+            ng-class="{'list-group-item-success':alert.success,'list-group-item-danger':!alert.success}"
+            ng-repeat="alert in alerts">{{alert.alert}}
+            <div class="label">{{alert.date.toString()}}</div>
+        </li>
+    </ul>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">규칙</div>
+        <ul class="list-group">
+            <li class="list-group-item">도형모양, 도형색, 배경색이 모두 같거나 모두 다른 3개 -> 합</li>
+            <li class="list-group-item">남은 합이 없으면 -> 결</li>
+            <li class="list-group-item">결성공 = +3점 / 결실패 = -2점 / 합성공 = +1점 / 합실패 = -1점</li>
+            <li class="list-group-item">연속으로 성공하면 보너스 점수를 받습니다.</li>
+            <li class="list-group-item">1.5초간 딜레이</li>
+            <li class="list-group-item">가입해야 통합순위에 기록됩니다.</li>
+            <li class="list-group-item">가입하면 별명 바꿀 수 있습니다.</li>
+            <li class="list-group-item">방에서 가장 오래된 유저가 방의 공개/비공개를 선택할 수 있습니다.</li>
+        </ul>
+    </div>
+
+</div>

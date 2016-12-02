@@ -1,0 +1,44 @@
+<div class="container">
+
+
+    <div class="alert" ng-class="article.type" ng-style="{'text-align':article.align}">
+        <div class="btn-group">
+            <label class="btn btn-success" ng-model="article.type" btn-radio="'alert-success'">가</label>
+            <label class="btn btn-info" ng-model="article.type" btn-radio="'alert-info'">나</label>
+            <label class="btn btn-danger" ng-model="article.type" btn-radio="'alert-danger'">다</label>
+            <label class="btn btn-warning" ng-model="article.type" btn-radio="'alert-warning'">라</label>
+            <label class="btn btn-default" ng-model="article.type" btn-radio="'alert-default'">마</label>
+        </div>
+        <div class="btn-group">
+            <label class="btn btn-default" ng-model="article.align" btn-radio="'left'"><i
+                    class="fa fa-align-left"></i></label>
+            <label class="btn btn-default" ng-model="article.align" btn-radio="'center'"><i
+                    class="fa fa-align-center"></i></label>
+            <label class="btn btn-default" ng-model="article.align" btn-radio="'right'"><i
+                    class="fa fa-align-right"></i></label>
+            <label class="btn btn-default" ng-model="article.align" btn-radio="'justify'"><i
+                    class="fa fa-align-justify"></i></label>
+        </div>
+
+        <div class="btn-group">
+            <label class="btn btn-default" ng-click="submit()">글쓰기</label>
+        </div>
+        <h3>{{article.user.name || "이름없는 사람"}} </h3>
+
+        {{article.date.toString()}}
+        <textarea class="form-control transparent" ng-model="article.text" placeholder="내용을 작성해 주세요."></textarea>
+    </div>
+
+    <div class="alert" ng-repeat="article in articles" ng-class="article.type" ng-style="{'text-align':article.align}">
+        <h3 style="margin-top:0">{{article.user.name || "이름없는 사람"}}</h3> <i class="fa fa-times delete"
+                                                               ng-show="user.logged && article.user.email == user.email"
+                                                               ng-click="delete(article)"></i>
+
+        <div>{{article.date.toDateString()}}</div>
+        <p ng-bind-html="article.text.newLine()"></p>
+    </div>
+
+    <div ng-show="info.page * info.limit + new == articles.length" class="alert alert-info" style="text-align:center"
+         ng-click="get()">더보기
+    </div>
+</div>

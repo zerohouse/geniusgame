@@ -1,0 +1,564 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+.animate-cube .ng-enter,
+.animate-cube .ng-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block;
+}
+.animate-cube .ng-leave.ng-leave-active,
+.animate-cube .ng-enter {
+  -webkit-transform: rotateX(-180deg);
+  -moz-transform: rotateX(-180deg);
+  -ms-transform: rotateX(-180deg);
+  -o-transform: rotateX(-180deg);
+  transform: rotateX(-180deg);
+  opacity: 0;
+  height: 0px;
+}
+.animate-cube .ng-enter.ng-enter-active,
+.animate-cube .ng-leave {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  -ms-transform: rotateX(0deg);
+  -o-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  opacity: 1;
+  height: 30px;
+}
+.fade-in-out {
+  transition: 0.1s linear all;
+  opacity: 1;
+}
+.fade-in-out .ng-hide {
+  opacity: 0;
+}
+.animate-move-up-hide .ng-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block;
+}
+.animate-move-up-hide .ng-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px;
+}
+.animate-move-up-hide .ng-leave.ng-leave-active {
+  opacity: 0;
+  top: -250px;
+  height: 0px;
+}
+.animate-move-down-hide .ng-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block;
+}
+.animate-move-down-hide .ng-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px;
+}
+.animate-move-down-hide .ng-leave.ng-leave-active {
+  opacity: 0;
+  top: 250px;
+  height: 0px;
+}
+.animate-move-from-up.ng-enter {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block;
+}
+.animate-move-from-up.ng-enter.ng-enter-active {
+  opacity: 1;
+  top: 0;
+  height: 30px;
+}
+.animate-move-from-up.ng-enter {
+  opacity: 0;
+  top: -250px;
+  height: 0px;
+}
+.animate-move-from-down.ng-enter {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block;
+}
+.animate-move-from-down.ng-enter.ng-enter-active {
+  opacity: 1;
+  top: 0;
+  height: 30px;
+}
+.animate-move-from-down.ng-enter {
+  opacity: 0;
+  top: 250px;
+  height: 0px;
+}
+card {
+  display: inline-block;
+  padding: 0;
+  height: 150px;
+  width: 100px;
+  font-size: 300%;
+  text-align: center;
+  line-height: 150px;
+  transition: 0.2s;
+  position: relative;
+}
+card .front,
+card .back {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 2px 2px 2px silver;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+card .front {
+  border: 1px solid;
+  background-color: white;
+}
+card .back {
+  background-color: #1e1e1e;
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+card.flipped .front {
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+card.flipped .back {
+  -webkit-transform: rotateY(0);
+  transform: rotateY(0);
+}
+.description {
+  font-size: 11px;
+  line-height: 18px;
+  position: absolute;
+  width: 180%;
+  text-align: center;
+  bottom: 3px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  border-radius: 10px;
+  transition: .2s;
+  color: #fff;
+  left: -40%;
+  word-break: keep-all;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  padding: 8px 15px;
+}
+.card-hover:hover {
+  z-index: 1;
+  -ms-transform: scale(1.2);
+  /* IE 9 */
+  -webkit-transform: scale(1.2);
+  /* Safari */
+  transform: scale(1.2) !important;
+}
+.card-hover:hover .description {
+  display: block;
+}
+.card-empty {
+  height: 158px;
+  width: 108px;
+  border: 4px dotted #ccc;
+  border-radius: 10px;
+  margin: 10px auto;
+  position: relative;
+}
+.card-empty .word {
+  font-size: 20px;
+  position: absolute;
+  color: #ccc;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+}
+@media screen and (max-width: 500px) {
+  .card-empty {
+    height: 88px;
+    width: 68px;
+  }
+  .card-empty .word {
+    font-size: 18px;
+  }
+  card {
+    width: 60px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 200%;
+  }
+}
+
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+.alert-window .message {
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+}
+.fb-login-button {
+  line-height: 38px;
+}
+@keyframes ex4 {
+  /* CSS3 */
+  0% {
+    background-color: #330033;
+  }
+  50% {
+    background-color: #161f29;
+  }
+  100% {
+    background-color: #330033;
+  }
+}
+@-moz-keyframes ex4 {
+  /* Firefox */
+  0% {
+    background-color: #330033;
+  }
+  50% {
+    background-color: #161f29;
+  }
+  100% {
+    background-color: #330033;
+  }
+}
+@-webkit-keyframes ex4 {
+  /* Webkit */
+  0% {
+    background-color: #330033;
+  }
+  50% {
+    background-color: #161f29;
+  }
+  100% {
+    background-color: #330033;
+  }
+}
+.steam {
+  animation: ex4 2s infinite;
+  /* CSS3 */
+  -moz-animation: ex4 2s infinite;
+  /* Firefox */
+  -webkit-animation: ex4 2s infinite;
+  /* Webkit */
+}
+[ng-click],
+[ui-sref] {
+  cursor: pointer;
+}
+.message {
+  text-align: center;
+}
+.message .success,
+.message .danger {
+  font-size: 18px;
+  padding: 20px;
+  box-shadow: 2px 2px 2px silver;
+  border-radius: 20px;
+}
+.message .success {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.message .danger {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.navbar-collapse.in {
+  overflow-y: visible;
+}
+textarea.form-control.transparent {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  overflow: hidden !important;
+  padding: 0;
+  text-align: inherit;
+  padding-top: 20px;
+}
+.alert {
+  position: relative;
+}
+.alert i.fa.fa-times.delete {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.wrap {
+  background-color: #540000;
+}
+.wrap > div {
+  width: 27%;
+  float: left;
+  text-align: center;
+  height: 130px;
+  margin: 3%;
+  line-height: 130px;
+  font-size: 400%;
+  position: relative;
+  outline: 1px solid #ffffff;
+  box-shadow: 1px 1px 1px silver;
+}
+.wrap > div .selected {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.wrap > div .number {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  font-size: 23px;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.lg-group {
+  text-align: center;
+}
+.lg-group .btn {
+  min-width: 43%;
+}
+.selected {
+  opacity: 0.7;
+  outline: 5px solid red !important;
+}
+.opacity {
+  opacity: 0.5;
+}
+@media screen and (max-width: 500px) {
+  .btn-check-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    border-radius: 0 !important;
+    z-index: 9999;
+  }
+  .btn-check-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    border-radius: 0 !important;
+    z-index: 9999;
+  }
+  .wrap > div {
+    line-height: 100px;
+    height: 100px;
+    font-size: 300%;
+  }
+}
+.chat-window {
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.red {
+  color: red;
+}
+td {
+  outline: 1px solid #eee;
+  height: 50px;
+  width: 100px;
+}
+
+.full-width {
+  width: 100%;
+  margin: 30px 0;
+}
+.wrap-block {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.card-dek {
+  height: 300px;
+  position: relative;
+  max-width: 940px;
+  margin: auto;
+}
+.card-dek card {
+  position: absolute;
+}
+.chips {
+  color: #525252;
+  min-height: 200px;
+  padding: 50px 20px;
+  text-align: center;
+}
+.chips .counter {
+  font-size: 25px;
+  font-weight: 900;
+  color: #777;
+}
+.chips .chip {
+  margin: 0 -10px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px 1px rgba(90, 90, 90, 0.1), inset 0 35px 1px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px 1px rgba(90, 90, 90, 0.1), inset 0 35px 1px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px 1px rgba(90, 90, 90, 0.1), inset 0 35px 1px rgba(255, 255, 255, 0.2);
+}
+.whisper input {
+  border: 2px solid brown;
+}
+.whisper .input-group-addon {
+  border: 2px solid brown;
+  background-color: brown;
+  color: white;
+}
+.blue {
+  background: #4cc3fe;
+  border: 8px dotted #fff;
+}
+.black {
+  background: #333;
+  width: 70px;
+  height: 70px;
+  border: 10px dotted #fff;
+}
+.game {
+  text-align: center;
+}
+.game .players {
+  display: inline-block;
+}
+.game .players .player {
+  height: 100%;
+  margin: 0 20px;
+  float: left;
+}
+.disconnect {
+  display: block;
+  margin-top: 5px;
+}
+.mycard {
+  text-align: center;
+  height: 170px;
+}
+.myscore {
+  padding-top: 215px;
+}
+@media screen and (max-width: 500px) {
+  .mycard {
+    text-align: center;
+    height: 120px;
+    padding-top: 10px;
+  }
+  .card-dek {
+    height: 170px;
+  }
+  .players .fa-user {
+    display: none;
+  }
+  .myscore {
+    padding-top: 115px;
+  }
+  .chips {
+    padding: 10px 20px;
+    min-height: inherit;
+    position: relative;
+  }
+  .chips .counter {
+    font-size: 15px;
+  }
+  .blue {
+    width: 30px !important;
+    height: 30px !important;
+    border: 6px dotted #fff !important;
+  }
+  .black {
+    width: 40px !important;
+    height: 40px !important;
+    border: 8px dotted #fff !important;
+  }
+}
+.popup {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  z-index: 3000;
+}
+.popup .window-s {
+  padding: 20px 40px 40px 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 400px;
+  max-width: 100%;
+  text-align: center;
+}
+.popup .window-m {
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 600px;
+  max-width: 100%;
+  text-align: center;
+}

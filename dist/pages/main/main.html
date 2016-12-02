@@ -1,0 +1,59 @@
+<div class="container">
+
+
+    <p>개발 배운지 1년된 쪼렙 개발자입니다.
+        <br>
+        재밌는일 구합니다.
+
+        <small style="opacity: 0.2;text-decoration: line-through">여친도..</small>
+        <br>
+        <br>
+
+        <span style="margin-right:5px;margin-bottom:10px;" ng-repeat="skill in skills"
+              class="badge">{{skill}}</span><br>
+        <a href="https://github.com/zerohouse" target="_blank">Github</a>
+    </p>
+
+    <p>parksungho86@gmail.com</p>
+
+
+    <h3>가입하면 기록 저장됩니다.</h3>
+
+
+</div>
+
+
+<div class="container">
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">결합</div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="room in list['check']" ui-sref="check({id:room})">
+                    {{room||"이름없음"}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">7게임</div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="room in list['seven']" ui-sref="seven({id:room})">
+                    {{room||"이름없음"}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">최고 기록자</div>
+            <ul class="list-group">
+                <li ng-show="h.name" class="list-group-item"
+                    ng-repeat="h in highest | orderBy:'score':true">
+                    {{h.name}} <span
+                        class="label label-info">{{h.score}}</span>점
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

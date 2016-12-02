@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                정보수정
+            </div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <div class="input-group-addon">이메일</div>
+                    <div class="form-control">{{user.email}}</div>
+                </div>
+                <br>
+                <div class="input-group">
+                    <div class="input-group-addon">점수</div>
+                    <div class="form-control">{{user.score}}</div>
+                </div>
+                <br>
+                <div class="input-group">
+                    <div class="input-group-addon">이름</div>
+                    <input ng-model="user.name" placeholder="이름" class="form-control">
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn btn-primary" ng-click="updateUser()">정보바꾸기</div>
+            </div>
+        </div>
+    </div>
+</div>
