@@ -19,10 +19,15 @@ function preventMutiple(io, socket) {
     socket.join(key);
     var members = io.nsps['/'].adapter.rooms[key];
     Object.keys(members).forEach(function (sid) {
+        if (!sid)
+            return;
         if (sid == socket.id) {
             return;
         }
         var other = io.sockets.connected[sid];
+        // console.log(sid, key);
+        if (!other)
+            return;
         other.emit('alert', new Message("다른곳에서 접속했어요.", true, 150000));
         other.disconnect();
     });
